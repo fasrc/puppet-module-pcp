@@ -9,6 +9,8 @@ define pcp::pmlogger (
   $config_path    = undef,
   $config_content = undef,
   $config_source  = undef,
+  $source_path    = undef,
+  $source_source  = undef,
 ) {
 
   include pcp
@@ -62,6 +64,18 @@ define pcp::pmlogger (
       source  => $config_source,
       notify  => Service['pmlogger'],
       before  => File["pmlogger-${name}"],
+    }
+  }
+
+  if $source_path {
+    file { "source":
+      ensure  => $ensure,
+      path    => $source_path,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      source  => $source_source,
+      notify  => Service['pmlogger'],
     }
   }
 
