@@ -20,6 +20,7 @@ class pcp (
   $pmlogger_daily_args      = '-X xz -x 3',
   # Resources
   $pmdas                    = {},
+  $pmlogger                 = {},
 ) inherits pcp::params {
 
   validate_bool(
@@ -40,6 +41,10 @@ class pcp (
 
   validate_hash(
     $pmdas
+  )
+
+  validate_hash(
+    $pmlogger
   )
 
   case $ensure {
