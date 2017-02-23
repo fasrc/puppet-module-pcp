@@ -180,6 +180,14 @@ Configuration file content for the PMDA.  Default is `undef`
 
 Configuration file source for the PMDA.  Default is `undef`
 
+##### `control_path`
+
+Control file path for PMDA.  Default is `undef`
+
+##### `control_source`
+
+Control file source for the PMDA.  Default is `undef`
+
 #### Define pcp::pmie
 
 Configure a pmie
