@@ -27,12 +27,13 @@ $version=1.1
 #$SOCKS_SERVER=123.456.789.123
 
 # for remote loggers running over a WAN with potentially long delays
-#$PMCD_CONNECT_TIMEOUT=20; export PMCD_CONNECT_TIMEOUT
-#$PMCD_REQUEST_TIMEOUT=15; export PMCD_REQUEST_TIMEOUT
+$PMCD_CONNECT_TIMEOUT=<%= pmcd_connect_timeout %>; export PMCD_CONNECT_TIMEOUT
+$PMCD_REQUEST_TIMEOUT=<%= pmcd_request_timeout %>; export PMCD_CONNECT_TIMEOUT
 
 # === LOGGER CONTROL SPECIFICATIONS ===
 #
 #Host		P?  S?	directory				args
+<%= control_hostname%> <%= control_primary %> <%= control_socks %> <%= control_log_dir %> <%= control_args %>
 
 #
 # Note: - LOCALHOSTNAME will be expanded to local: in the first column,

@@ -7,10 +7,13 @@ define pcp::pmlogger (
   $log_dir        = 'PCP_LOG_DIR/pmlogger/LOCALHOSTNAME',
   $args           = '',
   $config_path    = undef,
-  $config_content = undef,
-  $config_source  = undef,
-  $control_path    = undef,
-  $control_source  = undef,
+  $pmcd_connect_timeout = '20',
+  $pmcd_connect_timeout = '15',
+  $control_hostername = undef,
+  $control_primary = undef,
+  $control_socks = undef,
+  $control_log_dir = undef,
+  $control_args = undef
 ) {
 
   include pcp
@@ -60,23 +63,19 @@ define pcp::pmlogger (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => $config_content,
-      source  => $config_source,
+      content => template('pcp/pmlogger-${name}.config.erb'),
       notify  => Service['pmlogger'],
       before  => File["pmlogger-${name}"],
     }
   }
 
-  if $control_path {
-    file { "control":
-      ensure  => $ensure,
-      path    => $control_path,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      source  => $control_source,
-      notify  => Service['pmlogger'],
-    }
+  file { '/etc/pcp/pmlogger/control':
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('pcp/control.erb'),
+    notify  => Service['pmlogger'],
   }
 
 }
