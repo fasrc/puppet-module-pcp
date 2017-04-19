@@ -8,7 +8,7 @@ define pcp::pmlogger (
   $args           = '',
   $config_path    = undef,
   $pmcd_connect_timeout = '20',
-  $pmcd_connect_timeout = '15',
+  $pmcd_request_timeout = '15',
   $control_hostername = undef,
   $control_primary = undef,
   $control_socks = undef,
