@@ -14,6 +14,9 @@
 #		a first step
 #    Args	optional additional arguments to pmlogger and/or pmnewlog
 #
+# All files below "${PCP_PMLOGGERCONTROL_PATH}.d" are appended to this
+# file before evaluation, if any exist.
+#
 
 # === VARIABLE ASSIGNMENTS ===
 #
@@ -24,23 +27,22 @@ $version=1.1
 #$SOCKS_SERVER=123.456.789.123
 
 # for remote loggers running over a WAN with potentially long delays
-$PMCD_CONNECT_TIMEOUT=150
-$PMCD_REQUEST_TIMEOUT=120
+#$PMCD_CONNECT_TIMEOUT=20; export PMCD_CONNECT_TIMEOUT
+#$PMCD_REQUEST_TIMEOUT=15; export PMCD_REQUEST_TIMEOUT
 
 # === LOGGER CONTROL SPECIFICATIONS ===
 #
 #Host		P?  S?	directory				args
 
-# local primary logger
 #
-# (LOCALHOSTNAME is expanded to local: in the first column,
-# and to `hostname` in the fourth (directory) column.)
+# Note: - LOCALHOSTNAME will be expanded to local: in the first column,
+#         and to `hostname` in the fourth (directory) column
+#       - Default local primary logger specification is nowadays setup
+#         via ${PCP_PMLOGGERCONTROL_PATH}.d/local
+#	- If multiple pmloggers for the same host (e.g. both primary and
+#	  non-primary loggers are active), then they MUST use different
+#	  directories
 #
-LOCALHOSTNAME	y   n	/odyssey/supremm/pmlogger/LOCALHOSTNAME	-r -c /etc/pcp/pmlogger/pmlogger-supremm.config
-
-# Note:	if multiple pmloggers for the same host (e.g. both primary and
-#	non-primary loggers are active), then they MUST use different
-#	directories
 
 # local non-primary logger
 #LOCALHOSTNAME	n   n	PCP_LOG_DIR/pmlogger/mysummary		-r -T24h10m -c config.Summary
