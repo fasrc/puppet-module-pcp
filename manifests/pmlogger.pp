@@ -63,7 +63,7 @@ define pcp::pmlogger (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => template('pcp/pmlogger-${name}.config.erb'),
+      content => template("pcp/pmlogger-${name}.config.erb"),
       notify  => Service['pmlogger'],
       before  => File["pmlogger-${name}"],
     }
