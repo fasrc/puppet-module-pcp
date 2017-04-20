@@ -9,6 +9,7 @@ define pcp::pmlogger (
   $config_path    = undef,
   $pmcd_connect_timeout = '20',
   $pmcd_request_timeout = '15',
+  $control_ensure = undef,
   $control_hostname = undef,
   $control_primary = undef,
   $control_socks = undef,
@@ -69,13 +70,14 @@ define pcp::pmlogger (
     }
   }
 
-  file { '/etc/pcp/pmlogger/control':
-    ensure  => present,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template('pcp/control.erb'),
-    notify  => Service['pmlogger'],
+  if $control_ensure {
+    file { '/etc/pcp/pmlogger/control':
+      ensure  => $control_ensure,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('pcp/control.erb'),
+      notify  => Service['pmlogger'],
+    }
   }
-
 }
