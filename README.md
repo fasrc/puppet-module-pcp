@@ -196,7 +196,6 @@ Hostname associated with the pmie.  Default is `'LOCALHOSTNAME'`
 
 Boolean that sets if this pmie uses pmsocks.  Default is `false`
 
-
 ##### `log_file`
 
 The pmie control log file.  Default is `PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log`
@@ -225,11 +224,9 @@ Configure a pmlogger
 
 The pmlogger ensure property.  Valid values are `present` and `absent`.  Default is `present`.
 
-
 ##### `hostname`
 
 Hostname associated with the pmlogger.  Default is `'LOCALHOSTNAME'`
-
 
 ##### `primary`
 
@@ -252,21 +249,37 @@ Arguments passed to pmlogger.  Default is an empty string.
 
 Config path for the pmlogger.  If defined the value is passed as `-c value` to the pmlogger arguments.  Default is `undef`.
 
-##### `config_content`
+##### `control_ensure`
 
-The pmlogger config contents.  Default is `undef`.
+Determine if puppet is to control the control file.  Default is `undef`.
 
-##### `config_source`
+##### `pmcd_connect_timeout`
 
-The pmlogger config source.  Default is `undef`.
+Parameter for control template.  Default is `20`.
 
-##### `control_path`
+##### `pmcd_request_timeout`
 
-Control path for the pmlogger.  Default is `undef`.
+Parameter for control template.  Default is `15`.
 
-##### `control_source`
+##### `control_hostname`
 
-The pmlogger control source.  Default is `undef`.
+Sets the hostname in control template. Default is blank.
+
+##### `control_primary`
+
+Sets the primary option in control template. Default is blank.
+
+##### `control_socks`
+
+Sets the socks option in control template. Default is blank.
+
+##### `control_log_dir`
+
+Sets the log_dir option in control template. Default is blank.
+
+##### `control_args`
+
+Sets any additional args in control template. Default is blank.
 
 ## Compatibility
 
