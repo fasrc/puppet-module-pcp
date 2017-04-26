@@ -10,11 +10,11 @@ define pcp::pmlogger (
   $pmcd_connect_timeout = '20',
   $pmcd_request_timeout = '15',
   $control_ensure = undef,
-  $control_hostname = undef,
-  $control_primary = undef,
-  $control_socks = undef,
-  $control_log_dir = undef,
-  $control_args = undef
+  $control_hostname = '',
+  $control_primary = '',
+  $control_socks = '',
+  $control_log_dir = '',
+  $control_args = ''
 ) {
 
   include pcp
